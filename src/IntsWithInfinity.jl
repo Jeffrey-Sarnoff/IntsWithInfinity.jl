@@ -13,6 +13,8 @@ import Base: hash, string, show, convert, promote_rule,
 export InfInt16, InfInt32, InfInt64, InfInt128,
     iszero,nonzero,isone,isneg,nonneg,ispos,nonpos
 
+using Genera
+
 include("type/InfInts.jl")
 
 end # IntsWithInfinity
