@@ -5,6 +5,7 @@ import Base: hash, string, show, convert, promote_rule,
     typemin, typemax, widen,
     iseven, isodd, isinf, isfinite,
     round,trunc,
+    isequal, isless, (==),(!=),(<),(<=),(>=),(>),
     (~),(+),(-),(*),(/),(//),(\),(%),(^),
     widemul,div,fld,cld,rem,mod,divrem,fldmod,
     gcd, lcm, xgcd, isqrt, factorial, binomial
