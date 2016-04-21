@@ -1,2 +1,2 @@
-# IntsWithInfinty.jl
+## IntsWithInfinty.jl
 Ints augmented with Infinity
