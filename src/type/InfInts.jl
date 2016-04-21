@@ -70,12 +70,45 @@ InfInt1{32}()  = one(Int32)
 InfInt1{16}()  = one(Int16)
 InfInt1{8}()   = one(Int8)
 
-for op in [:+,:-,:*]
+for op in [:+,:-]
   @eval begin
       ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = ($op)(a, InfInt0{T}())
       ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
       ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = ($op)(a, InfInt1{T}())
       ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = ($op)(InfInt1{T}(),b)
+
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInt{T}}) = ($op)(a, InfInt0{T}())
+      ($op){T<:Integer}(::Type{ZeroAndInt{T}}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInt{T}}) = ($op)(a, InfInt1{T}())
+      ($op){T<:Integer}(a::OneAndInt{T}, ::Type{InfInt{T}}) = ($op)(InfInt1{T}(),b)
+  end
+end  
+
+for op in [:*]
+  @eval begin
+      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = a
+      ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = b
+
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInt{T}}) = ZeroAndInf{T}
+      ($op){T<:Integer}(::Type{ZeroAndInt{T}}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInt{T}}) = a
+      ($op){T<:Integer}(::Type{OneAndInt{T}}, b::InfInt{T}) = b
+  end
+end
+
+for op in [:/]
+  @eval begin
+      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = IntAndInf{T}
+      ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = IntAndInf{T}
+      ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = ZeroAndInf{T}
+
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInt{T}}) = IntAndInf{T}
+      ($op){T<:Integer}(::Type{ZeroAndInt{T}}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInt{T}}) = IntAndInf{T}
+      ($op){T<:Integer}(::Type{OneAndInt{T}}, b::InfInt{T}) = ZeroAndInf{T}
   end
 end  
 
