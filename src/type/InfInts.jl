@@ -58,8 +58,26 @@ typealias InfInt16  InfInt{Int16}
 
 @delegateTyped2 InfInt.val [+,-,*,/,\,%,mod,rem,div,fld,cld]
 
+InfInt0{128}() = zero(Int128)
+InfInt0{64}()  = zero(Int64)
+InfInt0{32}()  = zero(Int32)
+InfInt0{16}()  = zero(Int16)
+InfInt0{8}()   = zero(Int8)
 
+InfInt1{128}() = one(Int128)
+InfInt1{64}()  = one(Int64)
+InfInt1{32}()  = one(Int32)
+InfInt1{16}()  = one(Int16)
+InfInt1{8}()   = one(Int8)
 
+for op in [:+,:-,:*]
+  @eval begin
+      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = ($op)(a, InfInt0{T}())
+      ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
+      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = ($op)(a, InfInt1{T}())
+      ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = ($op)(InfInt1{T}(),b)
+  end
+end  
 
 
 #=
