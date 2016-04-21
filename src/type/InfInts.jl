@@ -1,4 +1,3 @@
-
 #=
    numeric hierarchy includes
        Int8|16|32|64|128  <: Signed <: Integer
