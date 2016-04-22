@@ -5,9 +5,12 @@
 
 abstract ExtendsSigned <: Signed
 
-abstract IntsWithInf{T<:Signed} <: ExtendsSigned
+abstract IntsWithInf{T} <: ExtendsSigned
 
-type ZeroAndInf{T} <: IntsWithInf end
+type ZeroAndInf{T} <: IntsWithInf{T} ZeroAndInf{T}(::Type{T}) = new() end; 
+Zero64 = ZeroAndInf{Int64}()
+type OneAndInf{T}  <: IntsWithInf{T} end
+type InfAndInf{T}  <: IntsWithInf{T} end
 
 typealias ZERO128 ZeroAndInf{Int128}
 typealias ZERO64  ZeroAndInf{Int64}
