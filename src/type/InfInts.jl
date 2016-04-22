@@ -11,6 +11,10 @@ type ZeroAndInf{T} <: IntsWithInf{T} end
 type OneAndInf{T}  <: IntsWithInf{T} end
 type InfAndInf{T}  <: IntsWithInf{T} end
 
+show{T<:Integer}(io::IO, x::ZeroAndInf{T}) = show(io, zero{T})
+show{T<:Integer}(io::IO, x::OneAndInf{T})  = show(io, one{T})
+show{T<:Integer}(io::IO, x::InfAndInf{T})  = show(io, "INF")
+
 
 #type ZeroAndInf{T} <: IntsWithInf{T} ZeroAndInf{T}(::Type{T}) = new() end; 
 Zero64 = ZeroAndInf{Int64}()
