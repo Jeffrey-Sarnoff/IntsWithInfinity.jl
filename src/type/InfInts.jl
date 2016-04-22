@@ -9,6 +9,7 @@ abstract IntsWithInf{T} <: ExtendsSigned
 
 type ZeroAndInf{T} <: IntsWithInf{T} ZeroAndInf{T}(::Type{T}) = new() end; 
 Zero64 = ZeroAndInf{Int64}(Int64)
+
 type OneAndInf{T}  <: IntsWithInf{T} end
 type InfAndInf{T}  <: IntsWithInf{T} end
 
@@ -18,15 +19,12 @@ typealias ZERO32  ZeroAndInf{Int32}
 typealias ZERO16  ZeroAndInf{Int16}
 typealias ZERO8   ZeroAndInf{Int8}
 
-type OneAndInf{T}  <: IntsWithInf end
-
 typealias ONE128 OneAndInf{Int128}
 typealias ONE64  OneAndInf{Int64}
 typealias ONE32  OneAndInf{Int32}
 typealias ONE16  OneAndInf{Int16}
 typealias ONE8   OneAndInf{Int8}
 
-type InfAndInf{T}  <: IntsWithInf end
 
 typealias INF128 InfAndInf{Int128}
 typealias INF64  InfAndInf{Int64}
