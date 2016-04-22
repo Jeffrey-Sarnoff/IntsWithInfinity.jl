@@ -75,15 +75,15 @@ InfInt1{8}()   = one(Int8)
 
 for op in [:+,:-]
   @eval begin
-      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = ($op)(a, InfInt0{T}())
-      ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
-      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = ($op)(a, InfInt1{T}())
-      ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = ($op)(InfInt1{T}(),b)
+      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInf{T}) = ($op)(a, InfInt0{T}())
+      ($op){T<:Integer}(a::ZeroAndInf{T}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
+      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInf{T}) = ($op)(a, InfInt1{T}())
+      ($op){T<:Integer}(a::OneAndInf{T}, b::InfInt{T}) = ($op)(InfInt1{T}(),b)
 
-      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInt{T}}) = ($op)(a, InfInt0{T}())
-      ($op){T<:Integer}(::Type{ZeroAndInt{T}}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
-      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInt{T}}) = ($op)(a, InfInt1{T}())
-      ($op){T<:Integer}(a::OneAndInt{T}, ::Type{InfInt{T}}) = ($op)(InfInt1{T}(),b)
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInf{T}}) = ($op)(a, InfInt0{T}())
+      ($op){T<:Integer}(::Type{ZeroAndInf{T}}, b::InfInt{T}) = ($op)(InfInt0{T}(),b)
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInf{T}}) = ($op)(a, InfInt1{T}())
+      ($op){T<:Integer}(a::OneAndInf{T}, ::Type{InfInt{T}}) = ($op)(InfInt1{T}(),b)
   end
 end  
 
