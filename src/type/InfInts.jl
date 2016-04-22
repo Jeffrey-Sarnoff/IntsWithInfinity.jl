@@ -89,29 +89,29 @@ end
 
 for op in [:*]
   @eval begin
-      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = ZeroAndInf{T}
-      ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ZeroAndInf{T}
-      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = a
-      ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = b
+      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInf{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::ZeroAndInf{T}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInf{T}) = a
+      ($op){T<:Integer}(a::OneAndInf{T}, b::InfInt{T}) = b
 
-      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInt{T}}) = ZeroAndInf{T}
-      ($op){T<:Integer}(::Type{ZeroAndInt{T}}, b::InfInt{T}) = ZeroAndInf{T}
-      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInt{T}}) = a
-      ($op){T<:Integer}(::Type{OneAndInt{T}}, b::InfInt{T}) = b
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInf{T}}) = ZeroAndInf{T}
+      ($op){T<:Integer}(::Type{ZeroAndInf{T}}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInf{T}}) = a
+      ($op){T<:Integer}(::Type{OneAndInf{T}}, b::InfInt{T}) = b
   end
 end
 
 for op in [:/]
   @eval begin
-      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInt{T}) = IntAndInf{T}
-      ($op){T<:Integer}(a::ZeroAndInt{T}, b::InfInt{T}) = ZeroAndInf{T}
-      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInt{T}) = IntAndInf{T}
-      ($op){T<:Integer}(a::OneAndInt{T}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, b::ZeroAndInf{T}) = IntAndInf{T}
+      ($op){T<:Integer}(a::ZeroAndInf{T}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, b::OneAndInf{T}) = IntAndInf{T}
+      ($op){T<:Integer}(a::OneAndInf{T}, b::InfInt{T}) = ZeroAndInf{T}
 
-      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInt{T}}) = IntAndInf{T}
-      ($op){T<:Integer}(::Type{ZeroAndInt{T}}, b::InfInt{T}) = ZeroAndInf{T}
-      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInt{T}}) = IntAndInf{T}
-      ($op){T<:Integer}(::Type{OneAndInt{T}}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{ZeroAndInf{T}}) = IntAndInf{T}
+      ($op){T<:Integer}(::Type{ZeroAndInf{T}}, b::InfInt{T}) = ZeroAndInf{T}
+      ($op){T<:Integer}(a::InfInt{T}, ::Type{OneAndInf{T}}) = IntAndInf{T}
+      ($op){T<:Integer}(::Type{OneAndInf{T}}, b::InfInt{T}) = ZeroAndInf{T}
   end
 end  
 
