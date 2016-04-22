@@ -8,7 +8,7 @@ abstract ExtendsSigned <: Signed
 abstract IntsWithInf{T} <: ExtendsSigned
 
 type ZeroAndInf{T} <: IntsWithInf{T} ZeroAndInf{T}(::Type{T}) = new() end; 
-Zero64 = ZeroAndInf{Int64}()
+Zero64 = ZeroAndInf{Int64}(Int64)
 type OneAndInf{T}  <: IntsWithInf{T} end
 type InfAndInf{T}  <: IntsWithInf{T} end
 
