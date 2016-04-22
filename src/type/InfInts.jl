@@ -59,6 +59,7 @@ typealias InfInt16  InfInt{Int16}
 
 @delegateTyped2 InfInt.val [+,-,*,/,\,%,mod,rem,div,fld,cld]
 
+#=
 InfInt0{128}() = zero(Int128)
 InfInt0{64}()  = zero(Int64)
 InfInt0{32}()  = zero(Int32)
@@ -70,6 +71,7 @@ InfInt1{64}()  = one(Int64)
 InfInt1{32}()  = one(Int32)
 InfInt1{16}()  = one(Int16)
 InfInt1{8}()   = one(Int8)
+=#
 
 for op in [:+,:-]
   @eval begin
